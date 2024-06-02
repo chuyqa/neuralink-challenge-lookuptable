@@ -12,13 +12,22 @@ segment_size = 2
 hash_size_bytes = 3  # Truncated SHA-256 hash size in bytes (3 bytes = 24 bits)
 ```
 
-Throw some more memory at the server and you can increase the `hash_size_bytes` to avoid hash collisions. 
+Throw some more memory at the server and you can increase the `hash_size_bytes` to avoid theoretical hash collisions. 
 
-Increase the depth or size to improve your compression ratio - but again the decode db will be larger. 
+Increase the depth or size to improve your compression ratio - but again the decode db will be much larger. 
 
-<img src='./images/mem_depth_fixed_seg.png' width=45%>
-<img src='./images/mem_seg_fixed_depth.png' width=45%>
+<img src='./images/mem_depth_fixed_seg.png' width=75%>
 
+The bit depth is easier to scale than the segment size:
+
+<img src='./images/mem_seg_fixed_depth.png' width=75%>
+
+Thus for a 1.33% you'd represent 32 using 24:
+```
+bit_depth = 16
+segment_size = 2   
+hash_size_bytes = 3
+```
 
 ## Part 2 - Run eval using the challenge dataset
 
